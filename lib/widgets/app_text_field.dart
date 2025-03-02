@@ -10,6 +10,7 @@ class AppTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final bool? isPhoneNumber;
   final TextEditingController? controller;
+  final bool? isPassword;
 
   const AppTextField({
     super.key,
@@ -18,6 +19,7 @@ class AppTextField extends StatefulWidget {
     this.keyboardType,
     this.isPhoneNumber = false,
     this.controller,
+    this.isPassword,
   });
 
   @override
@@ -32,6 +34,7 @@ class _AppTextFieldState extends State<AppTextField> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       controller: widget.controller,
+      obscureText: widget.isPassword ?? false,
       keyboardType: widget.keyboardType,
       inputFormatters:
           (widget.isPhoneNumber ?? false) ? [LengthLimitingTextInputFormatter(10)] : [],

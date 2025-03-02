@@ -11,6 +11,7 @@ class AppButton extends StatelessWidget {
   final BoxBorder? boxBorder;
   final Function()? onTap;
   final String? text;
+  final bool? isLoading;
 
   const AppButton({
     super.key,
@@ -21,6 +22,7 @@ class AppButton extends StatelessWidget {
     this.boxBorder,
     this.onTap,
     this.text,
+    this.isLoading,
   });
 
   @override
@@ -36,13 +38,16 @@ class AppButton extends StatelessWidget {
           border: boxBorder,
         ),
         child: Center(
-          child: Text(
-            text ?? '',
-            style: AppTextStyles.textStylePoppinsSemiBold.copyWith(
-              fontSize: 16.sp,
-              color: AppColors.colorWhite,
-            ),
-          ),
+          child:
+              isLoading ?? false
+                  ? CircularProgressIndicator(color: AppColors.colorWhite)
+                  : Text(
+                    text ?? '',
+                    style: AppTextStyles.textStylePoppinsSemiBold.copyWith(
+                      fontSize: 16.sp,
+                      color: AppColors.colorWhite,
+                    ),
+                  ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:ecomapp/core/constants/assets.dart';
 import 'package:ecomapp/core/styles/app_colors.dart';
 import 'package:ecomapp/core/styles/app_text_styles.dart';
+import 'package:ecomapp/features/auth/shared/provider.dart';
 import 'package:ecomapp/widgets/app_button.dart';
 import 'package:ecomapp/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,9 @@ class SignupPage extends ConsumerStatefulWidget {
 class _SignupPageState extends ConsumerState<SignupPage> {
   @override
   Widget build(BuildContext context) {
+    final state = ref.read(authNotifierProvider);
+    final stateNotifier = ref.read(authNotifierProvider.notifier);
+
     return Scaffold(
       backgroundColor: AppColors.colorWhite,
       body: SafeArea(
@@ -37,11 +41,38 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                   style: AppTextStyles.textStylePoppinsBold.copyWith(fontSize: 36.sp),
                 ),
                 20.verticalSpace,
-                AppTextField(hintText: 'Enter Email'),
+                // AppTextField(
+                //   hintText: 'Enter Name',
+                //   controller: stateNotifier.signupNameController,
+                // ),
+                // 10.verticalSpace,
+                AppTextField(
+                  hintText: 'Enter Email',
+                  controller: stateNotifier.signupEmailController,
+                ),
                 10.verticalSpace,
-                AppTextField(hintText: 'Enter Password'),
+                AppTextField(
+                  hintText: 'Enter Password',
+                  controller: stateNotifier.signupPasswordController,
+                  isPassword: true,
+                ),
                 120.verticalSpace,
-                AppButton(borderRadius: 12.r, color: AppColors.actionTextColor, text: 'Sign up'),
+                AppButton(
+                  isLoading: state.isLoading,
+                  borderRadius: 12.r,
+                  color: AppColors.actionTextColor,
+                  text: 'Sign up',
+                  onTap: () {
+                    if (stateNotifier.isSignupFieldsValidated) {
+                      stateNotifier.signup(
+                        onSuccess: () {
+                          stateNotifier.clearAllFields();
+                          context.pop();
+                        },
+                      );
+                    }
+                  },
+                ),
                 20.verticalSpace,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
