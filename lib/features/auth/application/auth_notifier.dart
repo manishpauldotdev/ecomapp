@@ -123,13 +123,4 @@ class AuthNotifier extends StateNotifier<AuthState> {
       showToastMessage('Invalid credentials');
     }
   }
-
-  Future<void> signout() async {
-    try {
-      _auth.signOut();
-    } catch (e) {
-      AppLog.log(e.toString());
-      showToastMessage('Something went wrong. Please try again.');
-    }
-  }
 }
