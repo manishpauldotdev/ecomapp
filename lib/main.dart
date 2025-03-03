@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:ecomapp/core/infrastructure/hive_database.dart';
 import 'package:ecomapp/core/providers/providers.dart';
 import 'package:ecomapp/core/routes/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';

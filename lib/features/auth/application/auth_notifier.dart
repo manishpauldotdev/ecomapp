@@ -115,12 +115,12 @@ class AuthNotifier extends StateNotifier<AuthState> {
         state = state.copyWith(isLoading: false);
       } else {
         state = state.copyWith(isLoading: false);
-        showToastMessage('Something went wrong. Please try again.');
+        showToastMessage('User not found');
       }
     } catch (e) {
       state = state.copyWith(isLoading: false);
       AppLog.log(e.toString());
-      showToastMessage('Something went wrong. Please try again.');
+      showToastMessage('Invalid credentials');
     }
   }
 
