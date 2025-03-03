@@ -98,6 +98,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   Future<void> login({required VoidCallback onSuccess}) async {
     try {
+      state = state.copyWith(isLoading: true);
+
       final credentials = await _auth.signInWithEmailAndPassword(
         email: loginEmailController.text,
         password: loginPasswordController.text,

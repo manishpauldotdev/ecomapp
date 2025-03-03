@@ -31,7 +31,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.read(authNotifierProvider);
+    final state = ref.watch(authNotifierProvider);
     final stateNotifier = ref.read(authNotifierProvider.notifier);
 
     return Scaffold(
@@ -61,6 +61,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 ),
                 160.verticalSpace,
                 AppButton(
+                  isLoading: state.isLoading,
                   borderRadius: 12.r,
                   color: AppColors.actionTextColor,
                   text: 'Login',

@@ -11,7 +11,7 @@ class AppButton extends StatelessWidget {
   final BoxBorder? boxBorder;
   final Function()? onTap;
   final String? text;
-  final bool? isLoading;
+  final bool isLoading;
 
   const AppButton({
     super.key,
@@ -22,13 +22,13 @@ class AppButton extends StatelessWidget {
     this.boxBorder,
     this.onTap,
     this.text,
-    this.isLoading,
+    this.isLoading = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: isLoading ? null : onTap,
       child: Container(
         width: width,
         height: height,
@@ -39,8 +39,12 @@ class AppButton extends StatelessWidget {
         ),
         child: Center(
           child:
-              isLoading ?? false
-                  ? CircularProgressIndicator(color: AppColors.colorWhite)
+              isLoading
+                  ? SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(color: AppColors.colorWhite),
+                  )
                   : Text(
                     text ?? '',
                     style: AppTextStyles.textStylePoppinsSemiBold.copyWith(

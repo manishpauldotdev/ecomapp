@@ -20,7 +20,7 @@ class SignupPage extends ConsumerStatefulWidget {
 class _SignupPageState extends ConsumerState<SignupPage> {
   @override
   Widget build(BuildContext context) {
-    final state = ref.read(authNotifierProvider);
+    final state = ref.watch(authNotifierProvider);
     final stateNotifier = ref.read(authNotifierProvider.notifier);
 
     return Scaffold(
