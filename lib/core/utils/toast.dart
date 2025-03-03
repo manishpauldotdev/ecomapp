@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:ecomapp/core/styles/app_colors.dart';
 import 'package:ecomapp/core/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +17,6 @@ Future<void> showToastMessage(String message, {String errorMessage = ''}) async 
       color: AppColors.colorWhite,
     ),
   );
-}
-
-Future<void> showDioError(DioException e) async {
-  if (e.response != null) {
-    await showToastMessage(e.response!.data['message'] as String);
-  }
 }
 
 Future<void> showConnectionWasInterruptedToastMessage() async {
