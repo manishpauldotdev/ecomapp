@@ -60,6 +60,7 @@ class HomeNotifier extends StateNotifier<HomeState> {
   }
 
   void removeAddedItems() {
+    showToastMessage('Order placed');
     state = state.copyWith(addedItemsToCart: []);
   }
 }
